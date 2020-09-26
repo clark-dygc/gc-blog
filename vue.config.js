@@ -1,3 +1,4 @@
 module.exports = {
-  publicPath: '/var/www/blog/client'
+  publicPath: '/client',
+  outputDir: '/var/www/blog/'
 }
