@@ -9,9 +9,9 @@ const whiteList = ['/login', '/auth-redirect']
 router.beforeEach(async (to, from, next) => {
   NProgress.start()
 
-  const hasLogin = store.getters.userInfo && store.getters.userInfo.email;
+  const hasToken = store.getters.token;
 
-  if (!hasLogin) {
+  if (!hasToken) {
     if (whiteList.indexOf(to.path) !== -1) {
       next();
       NProgress.done();

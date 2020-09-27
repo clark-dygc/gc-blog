@@ -25,7 +25,8 @@ const store = new Vuex.Store({
     posts: (state => {
       console.log(state.article.posts)
       return state.article.posts
-    })
+    }),
+    token: state => state.user.token
   }
 })
 

@@ -2,6 +2,7 @@ import { login, register } from '../../api/user'
 import gc from '../../utils/log'
 
 const state = {
+  token: '',
   email: "",
   name: "",
   id: 0,
@@ -18,6 +19,9 @@ const state = {
 }
 
 const mutations = {
+  SET_TOKEN: (state, token) => {
+    state.token = token;
+  },
   SET_EMAIL: (state, email) => {
     state.email = email
   },
@@ -54,15 +58,17 @@ const actions = {
           gc.warn(`login failed, code: ${code}, message: ${message}`)
           reject(new Error(`code: ${code}, message: ${message}`))
         } else {
-          gc.info(`login succeed, email: ${data.email}`)
+          gc.info(`login succeed, token: ${data.token}`)
 
-          commit('SET_EMAIL', data.email)
-          commit('SET_NAME', data.name)
-          commit('SET_ID', data.id)
-          commit('SET__ID', data._id)
-          commit('SET_INTRODUCE', data.introduce)
-          commit('SET_CREATE_TIME', data.create_time)
-          commit('SET_UPDATE_TIME', data.update_time)
+          commit('SET_TOKEN', data.token)
+
+          // commit('SET_EMAIL', data.email)
+          // commit('SET_NAME', data.name)
+          // commit('SET_ID', data.id)
+          // commit('SET__ID', data._id)
+          // commit('SET_INTRODUCE', data.introduce)
+          // commit('SET_CREATE_TIME', data.create_time)
+          // commit('SET_UPDATE_TIME', data.update_time)
 
           resolve(data)
         }

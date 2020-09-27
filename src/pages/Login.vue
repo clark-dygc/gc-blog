@@ -165,7 +165,7 @@ export default {
     };
     return {
       loginForm: {
-        username: "1210037253@qq.com",
+        username: "1220037252@qq.com",
         password: "gc910612",
       },
       registerForm: {
