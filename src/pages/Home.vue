@@ -1,36 +1,6 @@
 <template>
   <div class="container">
-    <sticky :sticky-top="0" :z-index="100">
-      <div class="header">
-        <el-menu
-          :default-active="activeIndex"
-          class="el-menu-demo"
-          mode="horizontal"
-          @select="handleSelect"
-          background-color="#fff"
-          text-color="#000"
-          active-text-color="#000"
-        >
-          <el-menu-item index="1">处理中心</el-menu-item>
-          <el-submenu index="2">
-            <template slot="title">我的工作台</template>
-            <el-menu-item index="2-1">选项1</el-menu-item>
-            <el-menu-item index="2-2">选项2</el-menu-item>
-            <el-menu-item index="2-3">选项3</el-menu-item>
-            <el-submenu index="2-4">
-              <template slot="title">选项4</template>
-              <el-menu-item index="2-4-1">选项1</el-menu-item>
-              <el-menu-item index="2-4-2">选项2</el-menu-item>
-              <el-menu-item index="2-4-3">选项3</el-menu-item>
-            </el-submenu>
-          </el-submenu>
-          <el-menu-item index="3" disabled>消息中心</el-menu-item>
-          <el-menu-item index="4">
-            <a href="https://www.ele.me" target="_blank">订单管理</a>
-          </el-menu-item>
-        </el-menu>
-      </div>
-    </sticky>
+    <div class="bg-img" :style="{'background-image': 'url(' + bgImgUrl + ')'}"></div>
     <div class="main">
       <div class="main-header">
         <img :src="headImgUrl" style="width:100px;height:100px;border-radius:50px;" />
@@ -38,6 +8,26 @@
           <span class="main-info-name">地狱鬼才</span>
           <i class="el-icon-help" />
           <span class="main-info-mail">1210037252@qq.com</span>
+        </div>
+      </div>
+      <div class="item-container">
+        <div class="item-info">
+          <span>GitHub：</span>
+          <el-link
+            style="margin-bottom:4px;"
+            href="https://github.com/clark-dygc/gc-blog"
+            target="_blank"
+            type="primary"
+          >本项目地址</el-link>
+        </div>
+        <div class="item-info">
+          <span>Demo：</span>
+          <el-link
+            style="margin-bottom:4px;"
+            href="https://gc.dygc.site"
+            target="_blank"
+            type="primary"
+          >演示地址</el-link>
         </div>
       </div>
     </div>
@@ -49,11 +39,12 @@ import gc from "@/utils/log";
 export default {
   name: "Home",
   components: {
-    Sticky,
+    // Sticky,
   },
   data() {
     return {
       activeIndex: "2",
+      bgImgUrl: require("@/assets/bg/book.jpg"),
       headImgUrl: require("@/assets/cat.jpg"),
     };
   },
@@ -69,6 +60,25 @@ export default {
 <style>
 </style>
 <style scoped>
+.bg-img {
+  width: 100%;
+  height: 200px;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.item-container {
+  width: 90%;
+  margin: 30px 5%;
+  display: flex;
+  flex-direction: column;
+}
+.item-info {
+  height: auto;
+  padding: 30px 50px;
+  margin: 10px 0px;
+  border-radius: 15px;
+  background-color: #efefef;
+}
 .header {
   width: 90%;
   background-color: #fff;
@@ -82,7 +92,7 @@ export default {
   width: 90%;
   height: 100px;
   padding: 0;
-  margin: 100px auto 0px;
+  margin: 10px auto 0px;
   display: flex;
   justify-content: flex-start;
   background-color: #efefef;
