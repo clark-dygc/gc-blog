@@ -1,4 +1,4 @@
-const prodApiUrl = 'https://gc.dygc.site:8080/'
+const prodApiUrl = 'https://gc.dygc.site:5000/'
 const debugApiUrl = 'http://127.0.0.1:5000/'
 
 export default {
