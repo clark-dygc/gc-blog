@@ -1,8 +1,9 @@
-import { login, register } from '../../api/user'
+import { login, register, getUserInfo, logout } from '../../api/user'
 import gc from '../../utils/log'
+import { getToken, setToken } from '../../utils/dom'
 
 const state = {
-  token: '',
+  token: getToken(),
   email: "",
   name: "",
   id: 0,
@@ -21,6 +22,7 @@ const state = {
 const mutations = {
   SET_TOKEN: (state, token) => {
     state.token = token;
+    setToken(token)
   },
   SET_EMAIL: (state, email) => {
     state.email = email
@@ -101,6 +103,43 @@ const actions = {
         }
       }).catch(err => {
         gc.error(err)
+        reject(err)
+      })
+    })
+  },
+  getUserInfo({ commit }) {
+
+    return new Promise((resolve, reject) => {
+      getUserInfo(state.token).then(resp => {
+        const { code, message, data } = resp.data
+
+        if (code !== 0) {
+          reject(new Error(`code: ${code}, message: ${message}`))
+        } else {
+          commit('SET_EMAIL', data.email)
+          commit('SET_NAME', data.name)
+          commit('SET_ID', data.id)
+          commit('SET__ID', data._id)
+          commit('SET_INTRODUCE', data.introduce)
+          commit('SET_CREATE_TIME', data.create_time)
+          commit('SET_UPDATE_TIME', data.update_time)
+
+          resolve()
+        }
+      })
+    })
+  },
+  logout({ commit }) {
+    return new Promise((resolve, reject) => {
+      logout().then(resp => {
+        const { code, message } = resp.data
+        if (code !== 0) {
+          reject(new Error(`code: ${code}, message: ${message}`))
+        } else {
+          commit('SET_TOKEN', '')
+          resolve()
+        }
+      }).catch(err => {
         reject(err)
       })
     })

@@ -1,4 +1,5 @@
 import gc from '../utils/log'
+const config = require('../config')
 
 export function setObject(key, val) {
   val = val || {}
@@ -25,4 +26,12 @@ export function setStr(key, val) {
 }
 export function getStr(key, df) {
   return localStorage.getItem(key) || df;
+}
+
+export function getToken() {
+  return getStr(config.TOKEN_KEY, '')
+}
+
+export function setToken(token) {
+  setStr(config.TOKEN_KEY, token)
 }

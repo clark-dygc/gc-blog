@@ -18,3 +18,18 @@ export async function register(data) {
     data: { data }
   })
 }
+
+export async function getUserInfo(email) {
+  return request({
+    url: '/getUserInfo',
+    method: 'GET',
+    data: { email: email }
+  })
+}
+
+export async function logout() {
+  return request({
+    url: '/logout',
+    method: 'GET',
+  })
+}

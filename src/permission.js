@@ -20,10 +20,20 @@ router.beforeEach(async (to, from, next) => {
       NProgress.done();
     }
   } else {
+    // 如果已经有token了，不用登录，直接进入home页
     if (to.path === '/login') {
       next({ path: '/' })
       NProgress.done()
     } else {
+
+      let userInfo = store.getters.userInfo
+      if (!userInfo.email) {
+        await store.dispatch('user/getUserInfo')
+        console.log('****************************************')
+        console.log(store.getters.userInfo)
+        console.log('****************************************')
+      }
+
       next();
       NProgress.done();
     }
