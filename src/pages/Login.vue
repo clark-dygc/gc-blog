@@ -165,14 +165,14 @@ export default {
     };
     return {
       loginForm: {
-        username: "1220037252@qq.com",
+        username: "1210037252@qq.com",
         password: "gc910612",
       },
       registerForm: {
         username: "gc",
         password: "gc910612",
         phonenumber: "13916017274",
-        email: "1210037253@qq.com",
+        email: "1210037252@qq.com",
         year: thisYear,
         month: "1",
         day: "1",

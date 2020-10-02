@@ -3,7 +3,11 @@ import config from '../config'
 import request from '../utils/request'
 
 export async function addArticle(data) {
-  return axios.post(config.apiUrl + 'addArticle', data)
+  return request({
+    url: '/oa/addArticle',
+    method: "POST",
+    data: data
+  })
 }
 
 export async function getArticleList(query) {

@@ -2,10 +2,12 @@ import axios from 'axios'
 import { MessageBox, Message } from 'element-ui'
 import store from '@/store'
 import { getToken } from '@/utils/auth'
+import config from '../config'
+
 
 // create an axios instance
 const service = axios.create({
-  baseURL: 'http://127.0.0.1:5000/', // url = base url + request url
+  baseURL: config.apiUrl,
   // withCredentials: true, // send cookies when cross-domain requests
   timeout: 5000 // request timeout
 })
@@ -15,7 +17,7 @@ service.interceptors.request.use(
   config => {
     // do something before request is sent
 
-    console.log(store.getters.token)
+    console.log(`token: ${store.getters.token}`)
 
     if (store.getters.token) {
       // let each request carry token
