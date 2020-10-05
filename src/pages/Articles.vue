@@ -68,7 +68,7 @@
         <el-table-column label="作者" width="100">
           <template slot-scope="scope">{{scope.row.author || '地狱鬼才'}}</template>
         </el-table-column>
-        <el-table-column fixed="right" width="80" label="操作" class="operation">
+        <el-table-column width="80" label="操作" class="operation">
           <template slot-scope="scope">
             <el-dropdown trigger="click" @command="handleComand">
               <span class="el-dropdown-link">
