@@ -1,5 +1,7 @@
 # gc-blog
 
+See [DEMO地址](https://gc.dygc.site/).
+
 ## Project setup
 ```
 npm install
@@ -23,10 +25,3 @@ npm run lint
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
-## 注册、登录
-## 展示POST，可以置顶
-## 创建POST/修改POST
-
-## 增加几个post
-  1. 如果使用vue命令创建一个简单的项目
-  2. 规划
