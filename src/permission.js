@@ -29,9 +29,6 @@ router.beforeEach(async (to, from, next) => {
       let userInfo = store.getters.userInfo
       if (!userInfo.email) {
         await store.dispatch('user/getUserInfo')
-        console.log('****************************************')
-        console.log(store.getters.userInfo)
-        console.log('****************************************')
       }
 
       next();

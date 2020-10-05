@@ -1,6 +1,6 @@
-import { login, register, getUserInfo, logout } from '../../api/user'
+import { login, register, getUserInfo, logout, resetToken } from '../../api/user'
 import gc from '../../utils/log'
-import { getToken, setToken } from '../../utils/dom'
+import { getToken, setToken, getLoginId, setLoginId } from '../../utils/dom'
 
 const state = {
   token: getToken(),
@@ -26,6 +26,7 @@ const mutations = {
   },
   SET_EMAIL: (state, email) => {
     state.email = email
+    setLoginId(email)
   },
   SET_NAME: (state, name) => {
     state.name = name
@@ -91,15 +92,38 @@ const actions = {
         } else {
           gc.info(`login succeed, email: ${data.email}`)
 
-          commit('SET_EMAIL', data.email)
-          commit('SET_NAME', data.name)
-          commit('SET_ID', data.id)
-          commit('SET__ID', data._id)
-          commit('SET_INTRODUCE', data.introduce)
-          commit('SET_CREATE_TIME', data.create_time)
-          commit('SET_UPDATE_TIME', data.update_time)
+          commit('SET_TOKEN', data.token)
 
           resolve(data)
+        }
+      }).catch(err => {
+        gc.error(err)
+        reject(err)
+      })
+    })
+  },
+  resetToken({ commit }) {
+    const email = getLoginId() || '1210037252@qq.com'
+
+    gc.info(`resetToken, email: ${email}`)
+
+    return new Promise((resolve, reject) => {
+      if (!email) {
+        reject(new Error('loginId not exists'))
+        return
+      }
+
+      resetToken(email).then(resp => {
+        const { code, message, data } = resp.data;
+        if (code !== 0) {
+          gc.warn(`login failed, code: ${code}, message: ${message}`)
+          reject(new Error(`code: ${code}, message: ${message}`))
+        } else {
+          gc.info(`login succeed, token: ${data.token}`)
+
+          commit('SET_TOKEN', data.token)
+
+          resolve()
         }
       }).catch(err => {
         gc.error(err)
@@ -111,7 +135,7 @@ const actions = {
 
     return new Promise((resolve, reject) => {
       getUserInfo(state.token).then(resp => {
-        const { code, message, data } = resp.data
+        const { code, message, data } = (resp || {}).data || {}
 
         if (code !== 0) {
           reject(new Error(`code: ${code}, message: ${message}`))

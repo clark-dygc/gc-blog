@@ -36,7 +36,7 @@
       </div>
     </div>
     <!-- 以下是注册窗口 -->
-    <el-dialog :visible.sync="dialogVisible" width="420px">
+    <el-dialog :visible.sync="dialogVisible" width="420px" :modal="true">
       <template slot="title">
         <h1 style="margin:0;padding:0">注册</h1>
         <span style="margin:0;padding:0">快速又简单。</span>

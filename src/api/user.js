@@ -15,7 +15,7 @@ export async function register(data) {
   return request({
     url: '/register',
     method: 'POST',
-    data: { data }
+    data: data
   })
 }
 
@@ -31,5 +31,13 @@ export async function logout() {
   return request({
     url: '/logout',
     method: 'GET',
+  })
+}
+
+export async function resetToken(email) {
+  return request({
+    url: '/resetToken',
+    method: 'POST',
+    data: { email: email }
   })
 }

@@ -65,6 +65,7 @@ export default {
   height: 200px;
   background-repeat: no-repeat;
   background-size: cover;
+  background-attachment: fixed;
 }
 .item-container {
   width: 90%;
@@ -78,6 +79,7 @@ export default {
   margin: 10px 0px;
   border-radius: 15px;
   background-color: #efefef;
+  /* background-color: rgba(255, 0, 0, 0.5) */
 }
 .header {
   width: 90%;

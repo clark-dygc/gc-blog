@@ -1,5 +1,5 @@
 import gc from '../utils/log'
-const config = require('../config')
+import config from '../config'
 
 export function setObject(key, val) {
   val = val || {}
@@ -34,4 +34,12 @@ export function getToken() {
 
 export function setToken(token) {
   setStr(config.TOKEN_KEY, token)
+}
+
+export function getLoginId() {
+  console.log(config.LOGIN_ID_KEY)
+  return getStr(config.LOGIN_ID_KEY, '')
+}
+export function setLoginId(loginId) {
+  setStr(config.LOGIN_ID_KEY, loginId)
 }
