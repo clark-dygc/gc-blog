@@ -58,6 +58,9 @@ import Comment from "@/components/Comment";
 import { mapGetters } from "vuex";
 import MarkdownItVue from "markdown-it-vue";
 import "markdown-it-vue/dist/markdown-it-vue.css";
+import { getStr, setStr } from "../utils/dom";
+
+const ARTICLE_ID_KEY = "DYGC.BLOG.TMP_ARTICLE_ID_KEY";
 
 export default {
   name: "ArticleDetail",
@@ -120,7 +123,14 @@ export default {
       if (!row) {
         return;
       }
-      getArticleDetail({ id: row._id })
+      let id;
+      if (row._id) {
+        setStr(ARTICLE_ID_KEY, row._id);
+        id = row._id;
+      } else {
+        id = getStr(ARTICLE_ID_KEY, "");
+      }
+      getArticleDetail({ id: id })
         .then((resp) => {
           const { code, message, data } = resp.data;
           if (code !== 0) {
