@@ -18,7 +18,10 @@
         </div>
       </div>
       <el-divider />
-      <div class="markdown-body content" v-html="article.content"></div>
+      <!-- <div class="markdown-body content" v-html="article.content"></div> -->
+      <div>
+        <markdown-it-vue class="md-body" :content="article.content" />
+      </div>
       <el-divider />
       <div style="margin-top:50px;">
         <Comment :articleId="articleId" />
@@ -48,13 +51,13 @@
 
 <script>
 import { getArticleDetail } from "@/api/article";
-import MarkdownIt from "markdown-it";
-const hljs = require("highlight.js");
 import Sticky from "@/components/Sticky";
 import gc from "@/utils/log";
 import CommentList from "@/components/CommentList";
 import Comment from "@/components/Comment";
 import { mapGetters } from "vuex";
+import MarkdownItVue from "markdown-it-vue";
+import "markdown-it-vue/dist/markdown-it-vue.css";
 
 export default {
   name: "ArticleDetail",
@@ -62,6 +65,7 @@ export default {
     Sticky,
     CommentList,
     Comment,
+    MarkdownItVue,
   },
   data() {
     return {
@@ -123,26 +127,6 @@ export default {
             gc.error(new Error(`code: ${code}, message: ${message}`));
           } else {
             this.articleId = data._id;
-            const md = new MarkdownIt({
-              highlight: function (str, lang) {
-                if (lang && hljs.getLanguage(lang)) {
-                  try {
-                    return (
-                      '<pre class="hljs"><code>' +
-                      hljs.highlight(lang, str, true).value +
-                      "</code></pre>"
-                    );
-                  } catch (__) {}
-                }
-
-                return (
-                  '<pre class="hljs"><code>' +
-                  md.utils.escapeHtml(str) +
-                  "</code></pre>"
-                );
-              },
-            });
-            data.content = md.render(data.content);
             this.article = data;
 
             this.$store.dispatch("comment/setComments", data.comments);

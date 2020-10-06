@@ -64,8 +64,6 @@ import { getArticleDetail, updateArticle } from "@/api/article";
 import Sticky from "@/components/Sticky.vue";
 import CommentDropdown from "@/components/CommentDropdown.vue";
 import { getObject, setObject } from "@/utils/dom";
-import MarkdownIt from "markdown-it";
-const hljs = require("highlight.js");
 import gc from "@/utils/log";
 
 const db_article = "db_key__edit_article";

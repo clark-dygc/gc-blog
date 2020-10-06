@@ -29,6 +29,7 @@
             type="primary"
           >演示地址</el-link>
         </div>
+        <div class="item-info markdown-body" v-html="test_content"></div>
         <!-- <div class="item-info">
           <div
             v-for="(value, key) in obj"
@@ -41,11 +42,10 @@
           <div v-for="item in arr" :key="item">{{item}}</div>
           <el-button type="primary" @click="handlePush">Push</el-button>
           <el-button type="primary" @click="handleReset">Reset</el-button>
-        </div> -->
+        </div>-->
       </div>
     </div>
   </div>
-
 </template>
 <script>
 import Sticky from "@/components/Sticky";
@@ -61,10 +61,13 @@ export default {
       activeIndex: "2",
       bgImgUrl: require("@/assets/bg/book.jpg"),
       headImgUrl: require("@/assets/cat.jpg"),
+      test_content: "",
     };
   },
   computed: {
     ...mapState(["arr", "obj"]),
+  },
+  created() {
   },
   methods: {
     goHome() {},
@@ -80,13 +83,13 @@ export default {
     },
     handleAdd() {
       const now = Date.now();
-      this.obj[now] = 'DDDDD'
+      this.obj[now] = "DDDDD";
       // this.$store.dispatch('addEle', [now.toString(), 'This is a value'])
     },
     handleDel() {
-      console.log(this.obj)
+      console.log(this.obj);
       // this.$store.dispatch('delEle', now.toString())
-    }
+    },
   },
 };
 </script>
