@@ -1,23 +1,29 @@
 <template>
   <div class="side">
-    <div class="header">
-      <el-col :span="2" :offset="1">
-        <el-avatar size="large" shape="circle" fit="fill" :src="require('@/assets/cat.jpg')"></el-avatar>
-      </el-col>
-      <el-col :span="8" :offset="2">
-        <div class="header-title">{{username}}</div>
-      </el-col>
-      <el-col :span="2" :offset="4">
-        <el-button type="text" icon="el-icon-search" @click="handleSearch"></el-button>
-      </el-col>
+    <div v-if="userInfo">
+      <div class="header">
+        <el-col :span="2" :offset="1">
+          <el-avatar size="large" shape="circle" fit="fill" :src="require('@/assets/cat.jpg')"></el-avatar>
+        </el-col>
+        <el-col :span="8" :offset="2">
+          <div class="header-title">{{userInfo.username || '地狱鬼才'}}</div>
+        </el-col>
+        <el-col :span="2" :offset="4">
+          <el-button type="text" icon="el-icon-search" @click="handleSearch"></el-button>
+        </el-col>
+      </div>
+
+      <div style="margin-left:5px;">
+        <i class="el-icon-suitcase-1"></i>
+        <span style="font-size:15px;padding-left:5px;">{{userInfo.email}}</span>
+      </div>
+
+      <p class="introduce">{{userInfo.introduce || introduce}}</p>
+    </div>
+    <div v-else style="max-height: 100px;padding:25px 60px;">
+      <el-button type="primary" @click="gotoLogin">登录/注册</el-button>
     </div>
 
-    <div style="margin-left:5px;">
-      <i class="el-icon-suitcase-1"></i>
-      <span style="font-size:15px;padding-left:5px;">{{userInfo.email}}</span>
-    </div>
-
-    <p class="introduce">{{userInfo.introduce || introduce}}</p>
     <el-divider />
 
     <el-menu
@@ -30,7 +36,7 @@
       text-color="#000"
       active-text-color="#409EFF"
     >
-      <app-link v-for="menu in menus" :key="menu.path" :to="menu.path">
+      <app-link v-for="menu in routes" :key="menu.path" :to="menu.path">
         <el-menu-item>
           <item :icon="menu.meta.icon" :title="menu.meta.name"></item>
         </el-menu-item>
@@ -43,9 +49,9 @@
 import AppLink from "./Link";
 import Item from "./Item";
 import router from "@/router";
-import { mainRoutes } from "@/router";
 
 import { Message } from "element-ui";
+import { mapState, mapGetters } from "vuex";
 
 export default {
   name: "SideTitle",
@@ -54,26 +60,30 @@ export default {
     Item,
   },
   data() {
-    const routes = mainRoutes.filter((r) => !r.hidden);
     return {
       activeMenu: "1",
       isCollapse: false,
       introduce: "with great power comes great responsibility.",
-      menus: routes,
     };
   },
+  created() {},
   computed: {
-    username() {
-      return this.$store.getters.userInfo.username || "地狱鬼才";
-    },
-    userInfo() {
-      return this.$store.getters.userInfo;
-    },
+    ...mapGetters(["userInfo"]),
+    ...mapState({
+      routes: (state) => {
+        const router = state.permission.routes.find((r) => r.path === "/");
+        const routes = router ? router.children : [];
+        return routes.filter((r) => !r.hidden);
+      },
+    }),
   },
   methods: {
     handleSearch() {
       Message.info("功能尚未实现，敬请期待");
     },
+    gotoLogin() {
+      this.$router.push('/login')
+    }
   },
 };
 </script>
@@ -82,7 +92,7 @@ export default {
 .header {
   width: 100%;
   margin-top: 25px;
-  margin-bottom: 25px;
+  margin-bottom: 15px;
   line-height: 50px;
   height: 60px;
 }
@@ -102,7 +112,7 @@ export default {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  padding-top: 15px;
+  padding-top: 10px;
 }
 .introduce {
   padding-left: 5px;

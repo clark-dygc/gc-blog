@@ -41,3 +41,27 @@ export async function updateArticle(article) {
     data: article
   })
 }
+
+export async function getCommentList(keyword, is_handle, pageNum, pageSize) {
+  /**
+   * 这个接口有问题，都没有article_id字段
+   */
+  return request({
+    url: '/getCommentList',
+    method: 'GET',
+    data: {
+      keyword,
+      is_handle,
+      pageNum,
+      pageSize
+    }
+  })
+}
+
+export async function addComment(comment) {
+  return request({
+    url: '/oa/addComment',
+    method: 'POST',
+    data: comment
+  })
+}

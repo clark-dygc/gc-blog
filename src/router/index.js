@@ -14,23 +14,47 @@ import Flowers from '@/pages/Flowers'
 import ArticleDetail from '@/pages/ArticleDetail'
 import EditArticle from '@/pages/EditArticle'
 
-export const mainRoutes = [
-  {
-    path: '/',
-    component: Home,
-    meta: {
-      name: '首页',
-      icon: 'el-icon-s-home'
+export const mainRoutes = {
+  path: '/',
+  component: Layout,
+  children: [
+    {
+      path: '/',
+      component: Home,
+      meta: {
+        name: '首页',
+        icon: 'el-icon-s-home'
+      }
+    },
+    {
+      path: '/articles',
+      component: Articles,
+      meta: {
+        name: '文章列表',
+        icon: 'el-icon-document-copy'
+      }
+    },
+    {
+      path: '/article_detail',
+      component: ArticleDetail,
+      hidden: true
+    },
+    {
+      path: '/edit_article',
+      component: EditArticle,
+      hidden: true,
+    },
+    {
+      path: '/flowers',
+      component: Flowers,
+      meta: {
+        name: '鸟语花香',
+        icon: 'el-icon-present'
+      }
     }
-  },
-  {
-    path: '/articles',
-    component: Articles,
-    meta: {
-      name: '文章列表',
-      icon: 'el-icon-document-copy'
-    }
-  },
+  ]
+}
+export const asyncRoutes = [
   {
     path: '/new_article',
     component: NewArticle,
@@ -38,49 +62,30 @@ export const mainRoutes = [
       name: '创建文章',
       icon: 'el-icon-edit-outline'
     }
-  }, {
-    path: '/article_detail',
-    component: ArticleDetail,
-    hidden: true
   },
+]
+
+export const constantRoutes = [
   {
-    path: '/edit_article',
-    component: EditArticle,
-    hidden: true,
-  },
-  {
-    path: '/flowers',
-    component: Flowers,
+    path: '/login',
+    component: Login,
     meta: {
-      name: '鸟语花香',
-      icon: 'el-icon-present'
+      name: '登录界面'
+    }
+  },
+  mainRoutes,
+  {
+    path: '*',
+    component: NotFound,
+    meta: {
+      name: '404'
     }
   }
 ]
 
 const router = new VueRouter({
   mode: 'history',
-  routes: [
-    {
-      path: '/login',
-      component: Login,
-      meta: {
-        name: '登录界面'
-      }
-    },
-    {
-      path: '/',
-      component: Layout,
-      children: mainRoutes
-    },
-    {
-      path: '*',
-      component: NotFound,
-      meta: {
-        name: '404'
-      }
-    }
-  ]
+  routes: constantRoutes
 })
 
 export default router

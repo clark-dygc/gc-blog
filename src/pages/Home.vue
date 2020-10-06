@@ -29,13 +29,28 @@
             type="primary"
           >演示地址</el-link>
         </div>
+        <div class="item-info">
+          <div
+            v-for="(value, key) in obj"
+            :key="key"
+          >{{ "key: " + key+ `, value: ` + value}}</div>
+          <el-button type="primary" @click="handleAdd">ADD</el-button>
+          <el-button type="primary" @click="handleDel">DELETE</el-button>
+        </div>
+        <div class="item-info">
+          <div v-for="item in arr" :key="item">{{item}}</div>
+          <el-button type="primary" @click="handlePush">Push</el-button>
+          <el-button type="primary" @click="handleReset">Reset</el-button>
+        </div>
       </div>
     </div>
   </div>
+
 </template>
 <script>
 import Sticky from "@/components/Sticky";
 import gc from "@/utils/log";
+import { mapState } from "vuex";
 export default {
   name: "Home",
   components: {
@@ -48,11 +63,30 @@ export default {
       headImgUrl: require("@/assets/cat.jpg"),
     };
   },
+  computed: {
+    ...mapState(["arr", "obj"]),
+  },
   methods: {
     goHome() {},
     goGithub() {},
     goGitCode() {},
     handleSelect() {},
+    handlePush() {
+      const now = Date.now();
+      this.$store.dispatch("push", now.toString());
+    },
+    handleReset() {
+      this.$store.dispatch("reset", ["FFF", "GGGG"]);
+    },
+    handleAdd() {
+      const now = Date.now();
+      this.obj[now] = 'DDDDD'
+      // this.$store.dispatch('addEle', [now.toString(), 'This is a value'])
+    },
+    handleDel() {
+      console.log(this.obj)
+      // this.$store.dispatch('delEle', now.toString())
+    }
   },
 };
 </script>
@@ -65,7 +99,7 @@ export default {
   height: 200px;
   background-repeat: no-repeat;
   background-size: cover;
-  background-attachment: fixed;
+  background-attachment: scroll;
 }
 .item-container {
   width: 90%;

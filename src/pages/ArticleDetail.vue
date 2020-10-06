@@ -19,6 +19,12 @@
       </div>
       <el-divider />
       <div class="markdown-body content" v-html="article.content"></div>
+      <el-divider />
+      <div style="margin-top:50px;">
+        <Comment :articleId="articleId" />
+
+        <comment-list :list="comments" :numbers="commentCount"></comment-list>
+      </div>
 
       <div class="footer">
         <el-button
@@ -46,11 +52,16 @@ import MarkdownIt from "markdown-it";
 const hljs = require("highlight.js");
 import Sticky from "@/components/Sticky";
 import gc from "@/utils/log";
+import CommentList from "@/components/CommentList";
+import Comment from "@/components/Comment";
+import { mapGetters } from "vuex";
 
 export default {
   name: "ArticleDetail",
   components: {
     Sticky,
+    CommentList,
+    Comment,
   },
   data() {
     return {
@@ -63,7 +74,26 @@ export default {
       },
       avatarSrc: require("@/assets/cat.jpg"),
       loading: false,
+      numbers: 88,
+      articleId: "",
     };
+  },
+  computed: {
+    comments() {
+      if (!this.articleId) {
+        return [];
+      }
+      // 这里只作简单的排序
+      const comments = this.$store.getters.getComments(this.articleId);
+      return comments.sort((a, b) => {
+        const at = new Date(a.create_time);
+        const bt = new Date(b.create_time);
+        return bt - at;
+      });
+    },
+    commentCount() {
+      return this.comments.length;
+    },
   },
   created() {},
   activated() {
@@ -89,10 +119,10 @@ export default {
       getArticleDetail({ id: row._id })
         .then((resp) => {
           const { code, message, data } = resp.data;
-          console.log(data);
           if (code !== 0) {
             gc.error(new Error(`code: ${code}, message: ${message}`));
           } else {
+            this.articleId = data._id;
             const md = new MarkdownIt({
               highlight: function (str, lang) {
                 if (lang && hljs.getLanguage(lang)) {
@@ -114,6 +144,8 @@ export default {
             });
             data.content = md.render(data.content);
             this.article = data;
+
+            this.$store.dispatch("comment/setComments", data.comments);
           }
         })
         .catch((err) => {

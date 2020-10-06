@@ -1,8 +1,8 @@
 import router from './router'
 import NProgress from 'nprogress'
 import store from './store'
-
 import gc from './utils/log'
+import user from './store/modules/user'
 
 const whiteList = ['/login', '/auth-redirect']
 
@@ -16,7 +16,15 @@ router.beforeEach(async (to, from, next) => {
       next();
       NProgress.done();
     } else {
-      next('/login')
+      const roles = store.getters.roles
+      if (roles.length === 0) {
+        const roles = ['reader']
+        await store.dispatch('setRoles', roles)
+        const authorRoutes = await store.dispatch('permission/generateRoutes', roles)
+        
+        router.addRoutes([authorRoutes])
+      }
+      next()
       NProgress.done();
     }
   } else {
@@ -25,12 +33,17 @@ router.beforeEach(async (to, from, next) => {
       next({ path: '/' })
       NProgress.done()
     } else {
-
-      let userInfo = store.getters.userInfo
-      if (!userInfo.email) {
-        await store.dispatch('user/getUserInfo')
+      const checkUserInfo = () => {
+        let userInfo = store.getters.userInfo
+        return userInfo && userInfo.email
       }
-
+      if (!checkUserInfo()) {
+        await store.dispatch('user/getUserInfo')
+        const roles = checkUserInfo() ? ['author'] : []
+        await store.dispatch('setRoles', roles)
+        const authorRoutes = await store.dispatch('permission/generateRoutes', roles)
+        router.addRoutes([authorRoutes])
+      }
       next();
       NProgress.done();
     }
