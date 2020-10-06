@@ -1,0 +1,30 @@
+{
+  "id": "2115036",
+  "name": "vueThirdIcon",
+  "font_family": "iconfont",
+  "css_prefix_text": "gc-icon",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "1231573",
+      "name": "thumb-up",
+      "font_class": "thumb-up",
+      "unicode": "e666",
+      "unicode_decimal": 58982
+    },
+    {
+      "icon_id": "10886157",
+      "name": "thumb",
+      "font_class": "thumb",
+      "unicode": "e61c",
+      "unicode_decimal": 58908
+    },
+    {
+      "icon_id": "17413029",
+      "name": "Thumb Dislike-1",
+      "font_class": "ThumbDislike-1",
+      "unicode": "e722",
+      "unicode_decimal": 59170
+    }
+  ]
+}

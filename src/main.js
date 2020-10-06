@@ -5,6 +5,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 import router from './router'
 import store from './store'
 import mixin from './mixin'
+import './assets/gc-icons/iconfont.css'
 import mavonEditor from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
 Vue.use(mavonEditor)

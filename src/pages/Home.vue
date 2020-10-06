@@ -29,7 +29,13 @@
             type="primary"
           >演示地址</el-link>
         </div>
-        <div class="item-info markdown-body" v-html="test_content"></div>
+        <div class="item-info">
+          <i class="gc-iconthumb-up"></i>
+          <i class="gc-iconthumb"></i>
+          <i class="gc-iconThumbDislike-1"></i>
+          <el-button icon="gc-iconthumb" circle size="medium" />
+          <el-button icon="gc-iconThumbDislike-1" circle size="small" />
+        </div>
         <!-- <div class="item-info">
           <div
             v-for="(value, key) in obj"
@@ -67,8 +73,7 @@ export default {
   computed: {
     ...mapState(["arr", "obj"]),
   },
-  created() {
-  },
+  created() {},
   methods: {
     goHome() {},
     goGithub() {},

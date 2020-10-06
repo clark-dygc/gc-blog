@@ -14,7 +14,9 @@
         </div>
         <div style="margin: 20px 10px;height:60px;">
           <h3 style="padding:5px 0;margin:0">{{article.author}}</h3>
-          <p style="padding:0;margin:0">{{ formatTime(article.create_time)}}</p>
+          <span style="padding:0;margin:0">{{ formatTime(article.create_time)}}</span>
+          <span style="padding-left: 10px;font-weight:500">字数 {{article.numbers}}</span>
+          <span style="padding-left: 10px;">阅读 {{article.meta.views}}</span>
         </div>
       </div>
       <el-divider />
@@ -23,6 +25,24 @@
         <markdown-it-vue class="md-body" :content="article.content" />
       </div>
       <el-divider />
+      <div class="content-like">
+        <el-button
+          ref="likeBtn"
+          :type="likeBtnType"
+          icon="gc-iconthumb"
+          circle
+          size="medium"
+          @click="doLike"
+        />
+        <span class="like-count">{{ likesCount }}人点赞</span>
+        <el-button
+          ref="dislikeBtn"
+          icon="gc-iconThumbDislike-1"
+          circle
+          size="medium"
+          @click="doDislike"
+        />
+      </div>
       <div style="margin-top:50px;">
         <Comment :articleId="articleId" />
 
@@ -78,11 +98,17 @@ export default {
         desc: "这是一个测试的博客摘要",
         content: "这是一个测试的博客正文",
         create_time: "2020-09-23T09:22:13.679Z",
+        meta: {
+          comments: 0,
+          likes: 0,
+          views: 0,
+        },
       },
       avatarSrc: require("@/assets/cat.jpg"),
       loading: false,
       numbers: 88,
       articleId: "",
+      likeBtnType: "info",
     };
   },
   computed: {
@@ -99,7 +125,11 @@ export default {
       });
     },
     commentCount() {
-      return this.comments.length;
+      return this.article.meta.comments || 0;
+    },
+    likesCount() {
+      const meta = this.article ? this.article.meta : {};
+      return meta ? meta.likes || 0 : 0;
     },
   },
   created() {},
@@ -109,6 +139,10 @@ export default {
     }
   },
   methods: {
+    doLike() {
+      this.likeBtnType = "danger";
+    },
+    doDislike() {},
     handlePre() {
       this.$message.warning("功能尚实现，敬请期待");
     },
@@ -138,6 +172,7 @@ export default {
           } else {
             this.articleId = data._id;
             this.article = data;
+            console.log(this.article);
 
             this.$store.dispatch("comment/setComments", data.comments);
           }
@@ -192,5 +227,12 @@ export default {
 }
 .footer {
   margin: 30px 20px 100px;
+}
+.content-like {
+  margin: 25px 5px;
+}
+.like-count {
+  padding-left: 10px;
+  padding-right: 10px;
 }
 </style>
