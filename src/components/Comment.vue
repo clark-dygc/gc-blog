@@ -65,7 +65,6 @@ export default {
             console.log(err);
           });
       }
-      this.$message.info(`功能未实现: ${this.articleId}, ${this.userId}`);
     },
     cancel() {
       this.showOpBtns = false;

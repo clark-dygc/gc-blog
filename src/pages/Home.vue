@@ -29,7 +29,7 @@
             type="primary"
           >演示地址</el-link>
         </div>
-        <div class="item-info">
+        <!-- <div class="item-info">
           <div
             v-for="(value, key) in obj"
             :key="key"
@@ -41,7 +41,7 @@
           <div v-for="item in arr" :key="item">{{item}}</div>
           <el-button type="primary" @click="handlePush">Push</el-button>
           <el-button type="primary" @click="handleReset">Reset</el-button>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
