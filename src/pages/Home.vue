@@ -30,25 +30,27 @@
           >演示地址</el-link>
         </div>
         <div class="item-info">
-          <i class="gc-iconthumb-up"></i>
-          <i class="gc-iconthumb"></i>
-          <i class="gc-iconThumbDislike-1"></i>
-          <el-button icon="gc-iconthumb" circle size="medium" />
-          <el-button icon="gc-iconThumbDislike-1" circle size="small" />
+          <h3>阿里图标</h3>
+          <div class="icon-list">
+            <i
+              v-for="icon in gc_icons"
+              :key="icon.icon"
+              :class="icon.icon"
+              class="icon-list-item-i"
+              size="large"
+            ></i>
+          </div>
+          <div class="icon-list">
+            <el-button
+              v-for="icon in gc_icons"
+              :key="icon.icon"
+              :icon="icon.icon"
+              size="large"
+              circle
+              class="icon-list-item-btn"
+            ></el-button>
+          </div>
         </div>
-        <!-- <div class="item-info">
-          <div
-            v-for="(value, key) in obj"
-            :key="key"
-          >{{ "key: " + key+ `, value: ` + value}}</div>
-          <el-button type="primary" @click="handleAdd">ADD</el-button>
-          <el-button type="primary" @click="handleDel">DELETE</el-button>
-        </div>
-        <div class="item-info">
-          <div v-for="item in arr" :key="item">{{item}}</div>
-          <el-button type="primary" @click="handlePush">Push</el-button>
-          <el-button type="primary" @click="handleReset">Reset</el-button>
-        </div>-->
       </div>
     </div>
   </div>
@@ -57,6 +59,7 @@
 import Sticky from "@/components/Sticky";
 import gc from "@/utils/log";
 import { mapState } from "vuex";
+import gc_icons from "../assets/gc.icons.json";
 export default {
   name: "Home",
   components: {
@@ -68,12 +71,15 @@ export default {
       bgImgUrl: require("@/assets/bg/book.jpg"),
       headImgUrl: require("@/assets/cat.jpg"),
       test_content: "",
+      gc_icons: gc_icons,
     };
   },
   computed: {
     ...mapState(["arr", "obj"]),
   },
-  created() {},
+  created() {
+    console.log(gc_icons);
+  },
   methods: {
     goHome() {},
     goGithub() {},
@@ -149,5 +155,17 @@ export default {
   font-size: 30px;
   margin-top: 10px;
   display: block;
+}
+.icon-list {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+.icon-list-item-i {
+  margin: 10px;
+}
+.icon-list-item-btn {
+  margin: 5px 10px;
 }
 </style>

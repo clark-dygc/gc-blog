@@ -6,6 +6,258 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "54795",
+      "name": "heart",
+      "font_class": "heart",
+      "unicode": "e627",
+      "unicode_decimal": 58919
+    },
+    {
+      "icon_id": "321572",
+      "name": "poker card",
+      "font_class": "pokercard",
+      "unicode": "e694",
+      "unicode_decimal": 59028
+    },
+    {
+      "icon_id": "322498",
+      "name": "heart",
+      "font_class": "heart1",
+      "unicode": "e6ff",
+      "unicode_decimal": 59135
+    },
+    {
+      "icon_id": "1420859",
+      "name": "game",
+      "font_class": "game",
+      "unicode": "e625",
+      "unicode_decimal": 58917
+    },
+    {
+      "icon_id": "1511391",
+      "name": "poker",
+      "font_class": "poker",
+      "unicode": "e623",
+      "unicode_decimal": 58915
+    },
+    {
+      "icon_id": "1596207",
+      "name": "game",
+      "font_class": "game1",
+      "unicode": "e6cc",
+      "unicode_decimal": 59084
+    },
+    {
+      "icon_id": "1898816",
+      "name": "heart",
+      "font_class": "heart2",
+      "unicode": "e6b3",
+      "unicode_decimal": 59059
+    },
+    {
+      "icon_id": "3892839",
+      "name": "麻将桌",
+      "font_class": "yukuaijiatingshenghuo-",
+      "unicode": "e602",
+      "unicode_decimal": 58882
+    },
+    {
+      "icon_id": "3900532",
+      "name": "麻将",
+      "font_class": "majiang",
+      "unicode": "e604",
+      "unicode_decimal": 58884
+    },
+    {
+      "icon_id": "3904408",
+      "name": "麻将",
+      "font_class": "majiang1",
+      "unicode": "e605",
+      "unicode_decimal": 58885
+    },
+    {
+      "icon_id": "4741268",
+      "name": "麻将",
+      "font_class": "majiang2",
+      "unicode": "e611",
+      "unicode_decimal": 58897
+    },
+    {
+      "icon_id": "4752511",
+      "name": "game",
+      "font_class": "game2",
+      "unicode": "e629",
+      "unicode_decimal": 58921
+    },
+    {
+      "icon_id": "5027412",
+      "name": "麻将发",
+      "font_class": "majiangfa",
+      "unicode": "e609",
+      "unicode_decimal": 58889
+    },
+    {
+      "icon_id": "5027417",
+      "name": "麻将中",
+      "font_class": "majiangzhong",
+      "unicode": "e60a",
+      "unicode_decimal": 58890
+    },
+    {
+      "icon_id": "5603592",
+      "name": "game fang",
+      "font_class": "gamefang",
+      "unicode": "e659",
+      "unicode_decimal": 58969
+    },
+    {
+      "icon_id": "5667967",
+      "name": "麻将台",
+      "font_class": "majiangtai",
+      "unicode": "e62b",
+      "unicode_decimal": 58923
+    },
+    {
+      "icon_id": "5832614",
+      "name": "heart",
+      "font_class": "heart3",
+      "unicode": "e688",
+      "unicode_decimal": 59016
+    },
+    {
+      "icon_id": "5832627",
+      "name": "poker",
+      "font_class": "poker1",
+      "unicode": "e690",
+      "unicode_decimal": 59024
+    },
+    {
+      "icon_id": "5832644",
+      "name": "poker-chip",
+      "font_class": "poker-chip",
+      "unicode": "e697",
+      "unicode_decimal": 59031
+    },
+    {
+      "icon_id": "7215636",
+      "name": "Heart & arrow",
+      "font_class": "Heartarrow",
+      "unicode": "e6e3",
+      "unicode_decimal": 59107
+    },
+    {
+      "icon_id": "7626079",
+      "name": "3 yarn, heart, needl",
+      "font_class": "yarnheartneedl",
+      "unicode": "e637",
+      "unicode_decimal": 58935
+    },
+    {
+      "icon_id": "8440620",
+      "name": "game",
+      "font_class": "zhenhuichongtubiaozhizuo-kuozhan-",
+      "unicode": "e618",
+      "unicode_decimal": 58904
+    },
+    {
+      "icon_id": "8494268",
+      "name": "Game",
+      "font_class": "Game",
+      "unicode": "e606",
+      "unicode_decimal": 58886
+    },
+    {
+      "icon_id": "9387187",
+      "name": "36麻将桌",
+      "font_class": "majiangzhuo",
+      "unicode": "e622",
+      "unicode_decimal": 58914
+    },
+    {
+      "icon_id": "9519602",
+      "name": "HeartBreak",
+      "font_class": "HeartBreak",
+      "unicode": "e835",
+      "unicode_decimal": 59445
+    },
+    {
+      "icon_id": "11270380",
+      "name": "game",
+      "font_class": "game3",
+      "unicode": "e8a7",
+      "unicode_decimal": 59559
+    },
+    {
+      "icon_id": "12194374",
+      "name": "game steering wheel",
+      "font_class": "gamesteeringwheel",
+      "unicode": "ec33",
+      "unicode_decimal": 60467
+    },
+    {
+      "icon_id": "12194728",
+      "name": "heart arrow",
+      "font_class": "heartarrow",
+      "unicode": "ec62",
+      "unicode_decimal": 60514
+    },
+    {
+      "icon_id": "13709886",
+      "name": "Game & Console",
+      "font_class": "GameConsole",
+      "unicode": "e68e",
+      "unicode_decimal": 59022
+    },
+    {
+      "icon_id": "14930490",
+      "name": "Game Pad游戏手柄",
+      "font_class": "GamePadyouxishoubing",
+      "unicode": "e72a",
+      "unicode_decimal": 59178
+    },
+    {
+      "icon_id": "15163969",
+      "name": "game",
+      "font_class": "game4",
+      "unicode": "e650",
+      "unicode_decimal": 58960
+    },
+    {
+      "icon_id": "15268462",
+      "name": "si-glyph-poker-1",
+      "font_class": "si-glyph-poker-1",
+      "unicode": "e677",
+      "unicode_decimal": 58999
+    },
+    {
+      "icon_id": "15268463",
+      "name": "si-glyph-poker-3",
+      "font_class": "si-glyph-poker-3",
+      "unicode": "e678",
+      "unicode_decimal": 59000
+    },
+    {
+      "icon_id": "15268467",
+      "name": "si-glyph-poker-4",
+      "font_class": "si-glyph-poker-4",
+      "unicode": "e679",
+      "unicode_decimal": 59001
+    },
+    {
+      "icon_id": "15268771",
+      "name": "si-glyph-poker-2",
+      "font_class": "si-glyph-poker-2",
+      "unicode": "e6d5",
+      "unicode_decimal": 59093
+    },
+    {
+      "icon_id": "15836331",
+      "name": "game",
+      "font_class": "game5",
+      "unicode": "e607",
+      "unicode_decimal": 58887
+    },
+    {
       "icon_id": "1231573",
       "name": "thumb-up",
       "font_class": "thumb-up",

@@ -65,3 +65,11 @@ export async function addComment(comment) {
     data: comment
   })
 }
+
+export async function likeArticle(data) {
+  return request({
+    url: '/likeArticle',
+    method: 'POST',
+    data: data
+  })
+}

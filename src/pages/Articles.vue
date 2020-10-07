@@ -55,9 +55,11 @@
             </div>
           </template>
         </el-table-column>
-        <el-table-column label="重要性" width="150">
+        <el-table-column label="信息" width="120">
           <template slot-scope="scope">
-            <el-rate v-model="scope.row.importance" disabled></el-rate>
+            <span class="row-info">点赞 {{ scope.row.meta.likes}}</span>
+            <br />
+            <span class="row-info">阅读 {{ scope.row.meta.views}}</span>
           </template>
         </el-table-column>
         <el-table-column label="创建时间" width="170">
@@ -118,6 +120,7 @@ export default {
       .dispatch("article/getArticleList", query)
       .then((resp) => {
         this.loading = false;
+        console.log(this.posts);
       })
       .catch((err) => {
         this.loading = false;
@@ -229,7 +232,6 @@ export default {
 </style>
 
 <style scoped>
-
 .header {
   height: 60px;
   background-color: #f0f2f5;
@@ -273,5 +275,18 @@ export default {
 .el-dropdown-link {
   cursor: pointer;
   color: #409eff;
+}
+.row-info {
+  font-family: -apple-system, system-ui, Segoe UI, Roboto, Ubuntu, Cantarell,
+    Noto Sans, sans-serif, BlinkMacSystemFont, Helvetica Neue, PingFang SC,
+    Hiragino Sans GB, Microsoft YaHei, Arial;
+  text-rendering: optimizeLegibility;
+  line-height: 10px;
+  word-break: break-word;
+  font-size: 0.8rem;
+  color: #909090;
+  letter-spacing: 1px;
+  padding: 0px;
+  margin: 0px;
 }
 </style>

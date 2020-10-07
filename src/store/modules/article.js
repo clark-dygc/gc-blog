@@ -1,4 +1,5 @@
-import { addArticle, getArticleList, delArticle, updateArticle } from '../../api/article'
+import { addArticle, getArticleList, delArticle, updateArticle, likeArticle } from '../../api/article'
+import gc from '../../utils/log'
 
 const state = {
   content: '',
@@ -37,17 +38,24 @@ const mutations = {
     }
   },
   UPDATE_POST: (state, article) => {
-    const idx = state.posts.findIndex(p => p._id == article.id);
-    if (idx !== -1) {
-      const post = state.posts[idx]
-      if (post) {
-        post._id = article.id
-        post.title = article.title
-        post.desc = article.desc
-        post.meta = article.meta
-        post.tags = article.tags
-        post.category = article.category
-      }
+    const post = state.posts.find(p => p._id == article.id);
+    if (!post) {
+      gc.warn(`未找到对应文章, article_id: ${article.id}`)
+    } else {
+      post._id = article.id
+      post.title = article.title
+      post.desc = article.desc
+      post.meta = article.meta
+      post.tags = article.tags
+      post.category = article.category
+    }
+  },
+  LIKE_ARTICLE: (state, { article_id, like_user }) => {
+    const article = state.posts.find(p => p._id == article_id);
+    if (!article) {
+      gc.warn(`未找到对应文章, article_id: ${article_id}`)
+    } else {
+      article.meta.likes += 1
     }
   }
 }
@@ -118,6 +126,28 @@ const actions = {
         reject(err)
       })
     })
+  },
+  likeArticle({ commit }, query) {
+    return new Promise((resolve, reject) => {
+      likeArticle(query).then(resp => {
+        const { code, message, data } = resp.data
+        if (code !== 0) {
+          const msg = `api: likeArticle, code: ${code}, message: ${message}`
+          gc.warn(msg)
+          reject(new Error(msg))
+        } else {
+          commit('LIKE_ARTICLE', {
+            article_id: query.id,
+            like_user: data
+          })
+          resolve(data)
+        }
+      }).catch(err => {
+        gc.warn(`api: likeArticle, err.message: ${err.message}`)
+        reject(err)
+      })
+    })
+
   }
 }
 

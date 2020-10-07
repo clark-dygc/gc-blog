@@ -13,10 +13,13 @@
           <el-avatar size="medium" style="width:50px;height:50px;" :src="avatarSrc"></el-avatar>
         </div>
         <div style="margin: 20px 10px;height:60px;">
-          <h3 style="padding:5px 0;margin:0">{{article.author}}</h3>
-          <span style="padding:0;margin:0">{{ formatTime(article.create_time)}}</span>
-          <span style="padding-left: 10px;font-weight:500">字数 {{article.numbers}}</span>
-          <span style="padding-left: 10px;">阅读 {{article.meta.views}}</span>
+          <h3 style="padding:5px 0 0 0;margin:0">{{article.author}}</h3>
+          <span class="article_info" style="padding:0;margin:0">{{ formatTime(article.create_time)}}</span>
+          <span
+            class="article_info"
+            style="padding-left: 10px;font-weight:500"
+          >字数 {{article.numbers}}</span>
+          <span class="article_info" style="padding-left: 10px;">阅读 {{article.meta.views}}</span>
         </div>
       </div>
       <el-divider />
@@ -79,6 +82,7 @@ import { mapGetters } from "vuex";
 import MarkdownItVue from "markdown-it-vue";
 import "markdown-it-vue/dist/markdown-it-vue.css";
 import { getStr, setStr } from "../utils/dom";
+import LinkVue from "../layout/components/Link.vue";
 
 const ARTICLE_ID_KEY = "DYGC.BLOG.TMP_ARTICLE_ID_KEY";
 
@@ -103,12 +107,12 @@ export default {
           likes: 0,
           views: 0,
         },
+        like_users: [],
       },
       avatarSrc: require("@/assets/cat.jpg"),
       loading: false,
       numbers: 88,
       articleId: "",
-      likeBtnType: "info",
     };
   },
   computed: {
@@ -128,8 +132,13 @@ export default {
       return this.article.meta.comments || 0;
     },
     likesCount() {
-      const meta = this.article ? this.article.meta : {};
-      return meta ? meta.likes || 0 : 0;
+      return this.article.meta.likes;
+    },
+    isLiked() {
+      return this._isLiked(this.article.like_users);
+    },
+    likeBtnType() {
+      return this._switchLike(this.isLiked);
     },
   },
   created() {},
@@ -140,7 +149,30 @@ export default {
   },
   methods: {
     doLike() {
-      this.likeBtnType = "danger";
+      const userInfo = this.$store.getters.userInfo;
+      if (!userInfo || !userInfo.email) {
+        this.$message.info("登录后才能点赞..");
+        return;
+      }
+      if (this.isLiked) {
+        this.$message.info("已经点赞过了，目前无法取消点赞");
+        return;
+      }
+
+      this.$store
+        .dispatch("article/likeArticle", {
+          id: this.articleId,
+          user_id: this.$store.getters.userInfo._id,
+        })
+        .then((like_user) => {
+          // 由于文章的详细内容并未存储在store中，所以目前只能在这里更新状态
+          this.article.meta.likes += 1;
+          this.article.like_users.push(like_user);
+          this.$message.success("点赞成功");
+        })
+        .catch((err) => {
+          this.$message.info("点赞失败");
+        });
     },
     doDislike() {},
     handlePre() {
@@ -180,6 +212,20 @@ export default {
         .catch((err) => {
           gc.error(err);
         });
+    },
+    _isLiked(like_users) {
+      if (!like_users) {
+        return false;
+      }
+      const userInfo = this.$store.getters.userInfo;
+      if (!userInfo) {
+        return false;
+      }
+      const user_id = userInfo._id;
+      return like_users.find((r) => r.id === user_id) != null;
+    },
+    _switchLike(like) {
+      return like ? "danger" : "info";
     },
   },
 };
@@ -234,5 +280,16 @@ export default {
 .like-count {
   padding-left: 10px;
   padding-right: 10px;
+}
+.article_info {
+  font-family: -apple-system, system-ui, Segoe UI, Roboto, Ubuntu, Cantarell,
+    Noto Sans, sans-serif, BlinkMacSystemFont, Helvetica Neue, PingFang SC,
+    Hiragino Sans GB, Microsoft YaHei, Arial;
+  text-rendering: optimizeLegibility;
+  line-height: normal;
+  word-break: break-word;
+  font-size: 0.8rem;
+  color: #909090;
+  letter-spacing: 1px;
 }
 </style>
