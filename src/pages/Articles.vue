@@ -68,7 +68,7 @@
           </template>
         </el-table-column>
         <el-table-column label="作者" width="100">
-          <template slot-scope="scope">{{scope.row.author || '地狱鬼才'}}</template>
+          <template slot-scope="scope">{{scope.row.author || '魑魅魍魉'}}</template>
         </el-table-column>
         <el-table-column width="80" label="操作" class="operation">
           <template slot-scope="scope">

@@ -3,7 +3,7 @@
     <div class="box">
       <div class="div-left">
         <div class="div-title">
-          <h1 class="h1-title">地狱鬼才</h1>
+          <h1 class="h1-title">魑魅魍魉</h1>
           <h2 class="h2-desc">如果你今天不开始，明天还是如此</h2>
         </div>
       </div>

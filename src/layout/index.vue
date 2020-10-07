@@ -26,7 +26,7 @@ export default {
   },
   computed: {
     username() {
-      return this.$store.getters.userInfo.username || "地狱鬼才";
+      return this.$store.getters.userInfo.username || "魑魅魍魉";
     },
   },
 };

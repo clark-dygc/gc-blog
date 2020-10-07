@@ -5,7 +5,7 @@
       <div class="main-header">
         <img :src="headImgUrl" style="width:100px;height:100px;border-radius:50px;" />
         <div class="main-info">
-          <span class="main-info-name">地狱鬼才</span>
+          <span class="main-info-name">魑魅魍魉</span>
           <i class="el-icon-help" />
           <span class="main-info-mail">1210037252@qq.com</span>
         </div>

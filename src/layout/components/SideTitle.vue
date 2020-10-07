@@ -6,7 +6,7 @@
           <el-avatar size="large" shape="circle" fit="fill" :src="require('@/assets/cat.jpg')"></el-avatar>
         </el-col>
         <el-col :span="8" :offset="2">
-          <div class="header-title">{{userInfo.username || '地狱鬼才'}}</div>
+          <div class="header-title">{{userInfo.username || '魑魅魍魉'}}</div>
         </el-col>
         <el-col :span="2" :offset="4">
           <el-button type="text" icon="el-icon-search" @click="handleSearch"></el-button>
@@ -36,8 +36,8 @@
       text-color="#000"
       active-text-color="#409EFF"
     >
-      <app-link v-for="menu in routes" :key="menu.path" :to="menu.path">
-        <el-menu-item>
+      <app-link v-for="(menu,idx) in routes" :key="menu.path" :to="menu.path">
+        <el-menu-item :index="idx">
           <item :icon="menu.meta.icon" :title="menu.meta.name"></item>
         </el-menu-item>
       </app-link>
@@ -61,7 +61,7 @@ export default {
   },
   data() {
     return {
-      activeMenu: "1",
+      activeMenu: 0,
       isCollapse: false,
       introduce: "with great power comes great responsibility.",
     };
@@ -82,8 +82,8 @@ export default {
       Message.info("功能尚未实现，敬请期待");
     },
     gotoLogin() {
-      this.$router.push('/login')
-    }
+      this.$router.push("/login");
+    },
   },
 };
 </script>
