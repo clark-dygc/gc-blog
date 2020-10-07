@@ -135,9 +135,11 @@ export default {
       return this.article.meta.likes;
     },
     isLiked() {
+      console.log("isLiked");
       return this._isLiked(this.article.like_users);
     },
     likeBtnType() {
+      console.log("likeBtnType");
       return this._switchLike(this.isLiked);
     },
   },
@@ -174,7 +176,9 @@ export default {
           this.$message.info("点赞失败");
         });
     },
-    doDislike() {},
+    doDislike() {
+      this.$message.info("功能未实现，敬请期待");
+    },
     handlePre() {
       this.$message.warning("功能尚实现，敬请期待");
     },
@@ -214,6 +218,7 @@ export default {
         });
     },
     _isLiked(like_users) {
+      console.log("_isLiked");
       if (!like_users) {
         return false;
       }
@@ -225,6 +230,7 @@ export default {
       return like_users.find((r) => r.id === user_id) != null;
     },
     _switchLike(like) {
+      console.log("_switchLike");
       return like ? "danger" : "info";
     },
   },
