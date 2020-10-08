@@ -146,6 +146,24 @@ export default {
       });
     },
     handleComand({ article, type }) {
+      const userInfo = this.$store.getters.userInfo;
+      if (!userInfo) {
+        this.$message.warning("请先登录..");
+        return;
+      }
+      // if (
+      //   !userInfo.roles ||
+      //   !Array.isArray(userInfo.roles) ||
+      //   !userInfo.roles.includes("admin")
+      // ) {
+      //   this.$message.warning("你没有权限操作");
+      //   return;
+      // }
+      // 暂时这样写
+      if (userInfo.email !== "1210037252@qq.com") {
+        this.$message.warning("你没有权限操作");
+        return;
+      }
       if (type === 3) {
         this.handleDelete(article);
       } else if (type === 1) {

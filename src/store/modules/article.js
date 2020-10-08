@@ -45,9 +45,7 @@ const mutations = {
       post._id = article.id
       post.title = article.title
       post.desc = article.desc
-      post.meta = article.meta
-      post.tags = article.tags
-      post.category = article.category
+      post.author = article.author
     }
   },
   LIKE_ARTICLE: (state, { article_id, like_user }) => {

@@ -67,6 +67,9 @@ export default {
   },
   data() {
     return {
+      testForm: {
+        username: "",
+      },
       activeIndex: "2",
       bgImgUrl: require("@/assets/bg/book.jpg"),
       headImgUrl: require("@/assets/cat.jpg"),
@@ -81,6 +84,9 @@ export default {
     console.log(gc_icons);
   },
   methods: {
+    onSubmit() {
+      console.log("onSubmit");
+    },
     goHome() {},
     goGithub() {},
     goGitCode() {},
