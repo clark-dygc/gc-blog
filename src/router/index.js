@@ -13,6 +13,7 @@ import NewArticle from '@/pages/NewArticle'
 import Flowers from '@/pages/Flowers'
 import ArticleDetail from '@/pages/ArticleDetail'
 import EditArticle from '@/pages/EditArticle'
+import ECharts from "@/pages/ECharts"
 
 export const mainRoutes = {
   path: '/',
@@ -51,6 +52,14 @@ export const mainRoutes = {
         name: '鸟语花香',
         icon: 'el-icon-present'
       }
+    }, {
+      path: '/echarts',
+      component: ECharts,
+      meta: {
+        name: 'ECharts',
+        icon: 'el-icon-orange'
+      },
+      hidden: true
     }
   ]
 }

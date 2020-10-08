@@ -4,6 +4,7 @@ import user from './modules/user'
 import article from './modules/article'
 import permission from './modules/permission'
 import comment from './modules/comment'
+import system from './modules/system'
 
 
 Vue.use(Vuex)
@@ -13,7 +14,8 @@ const store = new Vuex.Store({
     user,
     article,
     permission,
-    comment
+    comment,
+    system
   },
   state: {
     arr: ['AAAAA', 'BBBBBBBBBB', 'CCCCCCCC', 'DDDDDDDDDDDD'],
@@ -35,7 +37,8 @@ const store = new Vuex.Store({
     roles: state => state.roles,
     getComments: (state) => (article_id) => {
       return state.comment.comments.filter(c => c.article_id === article_id)
-    }
+    },
+    systemInfo: state => state.system.systemInfo
   },
   mutations: {
     PUSH_ARR: (state, ele) => {

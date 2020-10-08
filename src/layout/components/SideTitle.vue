@@ -36,8 +36,8 @@
       text-color="#000"
       active-text-color="#409EFF"
     >
-      <app-link v-for="(menu,idx) in routes" :key="menu.path" :to="menu.path">
-        <el-menu-item :index="idx">
+      <app-link v-for="menu in routes" :key="menu.path" :to="menu.path">
+        <el-menu-item :index="menu.path">
           <item :icon="menu.meta.icon" :title="menu.meta.name"></item>
         </el-menu-item>
       </app-link>
@@ -52,6 +52,9 @@ import router from "@/router";
 
 import { Message } from "element-ui";
 import { mapState, mapGetters } from "vuex";
+import { setStr, getStr } from "../../utils/dom";
+
+const SIDEBAR_ROUTE_KEY = "DYGC.BLOG.SIDEBAR_ROUTE_KEY";
 
 export default {
   name: "SideTitle",
@@ -61,12 +64,15 @@ export default {
   },
   data() {
     return {
-      activeMenu: 0,
+      activeMenu: "/",
       isCollapse: false,
       introduce: "with great power comes great responsibility.",
     };
   },
-  created() {},
+  created() {
+    // 这里临时保存在localstorge里面，理论上应该保存在store里面，再由store读写localstorage 
+    this.activeMenu = getStr(SIDEBAR_ROUTE_KEY, "/");
+  },
   computed: {
     ...mapGetters(["userInfo"]),
     ...mapState({
@@ -76,6 +82,11 @@ export default {
         return routes.filter((r) => !r.hidden);
       },
     }),
+  },
+  watch: {
+    $route(to, from) {
+      setStr(SIDEBAR_ROUTE_KEY, to.path);
+    },
   },
   methods: {
     handleSearch() {

@@ -52,3 +52,11 @@ export function timestampToTime(timestamp, dayMinSecFlag) {
   }
   return Y + M + D + h + m + s;
 }
+
+export function formatCoutndown(seconds) {
+  const d = Math.floor(seconds / 86400);
+  const h = Math.floor((seconds % 86400) / 3600)
+  const m = Math.floor((seconds % 3600) / 60)
+  const s = Math.floor(seconds % 60)
+  return `${d}天${h}小时${m}分钟${s}秒`
+}
