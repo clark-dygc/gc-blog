@@ -37,6 +37,14 @@ const mutations = {
       state.posts.splice(idx, 1)
     }
   },
+  READ_POST: (state, id) => {
+    const post = state.posts.find(p => p._id == id);
+    if (!post) {
+      gc.warn(`未找到对应文章, article_id: ${id}`)
+    } else {
+      post.meta.views += 1;
+    }
+  },
   UPDATE_POST: (state, article) => {
     const post = state.posts.find(p => p._id == article.id);
     if (!post) {
@@ -146,6 +154,12 @@ const actions = {
       })
     })
 
+  },
+  readPost({ commit }, id) {
+    return new Promise((resolve, reject) => {
+      commit('READ_POST', id)
+      resolve()
+    })
   }
 }
 

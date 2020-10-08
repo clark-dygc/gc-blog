@@ -108,6 +108,7 @@ export default {
           views: 0,
         },
         like_users: [],
+        _id: "",
       },
       avatarSrc: require("@/assets/cat.jpg"),
       loading: false,
@@ -135,16 +136,16 @@ export default {
       return this.article.meta.likes;
     },
     isLiked() {
-      console.log("isLiked");
       return this._isLiked(this.article.like_users);
     },
     likeBtnType() {
-      console.log("likeBtnType");
       return this._switchLike(this.isLiked);
     },
   },
   created() {},
   activated() {
+    console.log(this.articleId);
+    this.$store.dispatch("article/readPost", this.articleId);
     if (!this.articleLoaded) {
       this.fetchArticle();
     }
@@ -218,7 +219,6 @@ export default {
         });
     },
     _isLiked(like_users) {
-      console.log("_isLiked");
       if (!like_users) {
         return false;
       }
@@ -230,7 +230,6 @@ export default {
       return like_users.find((r) => r.id === user_id) != null;
     },
     _switchLike(like) {
-      console.log("_switchLike");
       return like ? "danger" : "info";
     },
   },
