@@ -60,6 +60,7 @@ import Sticky from "@/components/Sticky";
 import gc from "@/utils/log";
 import { mapState } from "vuex";
 import gc_icons from "../assets/gc.icons.json";
+
 export default {
   name: "Home",
   components: {
@@ -67,9 +68,11 @@ export default {
   },
   data() {
     return {
+      show3: true,
       testForm: {
         username: "",
       },
+      toggle: "yes",
       activeIndex: "2",
       bgImgUrl: require("@/assets/bg/book.jpg"),
       headImgUrl: require("@/assets/cat.jpg"),
@@ -84,9 +87,6 @@ export default {
     console.log(gc_icons);
   },
   methods: {
-    onSubmit() {
-      console.log("onSubmit");
-    },
     goHome() {},
     goGithub() {},
     goGitCode() {},
@@ -173,5 +173,17 @@ export default {
 }
 .icon-list-item-btn {
   margin: 5px 10px;
+}
+.transition-box {
+  margin-bottom: 10px;
+  width: 200px;
+  height: 100px;
+  border-radius: 4px;
+  background-color: #409eff;
+  text-align: center;
+  color: #fff;
+  padding: 40px 20px;
+  box-sizing: border-box;
+  margin-right: 20px;
 }
 </style>
