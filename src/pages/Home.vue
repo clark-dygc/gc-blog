@@ -12,22 +12,7 @@
       </div>
       <div class="item-container">
         <div class="item-info">
-          <span>GitHub：</span>
-          <el-link
-            style="margin-bottom:4px;"
-            href="https://github.com/clark-dygc/gc-blog"
-            target="_blank"
-            type="primary"
-          >本项目地址</el-link>
-        </div>
-        <div class="item-info">
-          <span>Demo：</span>
-          <el-link
-            style="margin-bottom:4px;"
-            href="https://gc.dygc.site"
-            target="_blank"
-            type="primary"
-          >演示地址</el-link>
+          <GitHubItem v-for="item in projects" :key="item.github" :item="item"></GitHubItem>
         </div>
         <div class="item-info">
           <h3>阿里图标</h3>
@@ -57,6 +42,7 @@
 </template>
 <script>
 import Sticky from "@/components/Sticky";
+import GitHubItem from "@/components/GitHubItem";
 import gc from "@/utils/log";
 import { mapState } from "vuex";
 import gc_icons from "../assets/gc.icons.json";
@@ -65,6 +51,7 @@ export default {
   name: "Home",
   components: {
     // Sticky,
+    GitHubItem,
   },
   data() {
     return {
@@ -78,6 +65,22 @@ export default {
       headImgUrl: require("@/assets/cat.jpg"),
       test_content: "",
       gc_icons: gc_icons,
+      projects: [
+        {
+          name: "个人博客",
+          github: "https://github.com/clark-dygc/gc-blog",
+          demo: "https://gc.dygc.site/",
+          desc: "这是一个简单的个人博客，目前还在完善中...",
+          img: require("@/assets/gc-blog.png"),
+        },
+        {
+          name: "Events-App",
+          github: "https://github.com/clark-dygc/events-app",
+          demo: "https://gc.dygc.site:8081/",
+          desc: "这是一个供学习clone的项目",
+          img: require("@/assets/events-app.png"),
+        },
+      ],
     };
   },
   computed: {
