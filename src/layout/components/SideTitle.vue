@@ -18,7 +18,7 @@
         <span style="font-size:15px;padding-left:5px;">{{userInfo.email}}</span>
       </div>
 
-      <p class="introduce">{{userInfo.introduce || introduce}}</p>
+      <small class="introduce">如果今天还不开始，明天还是如此</small>
     </div>
     <div v-else style="max-height: 100px;padding:25px 60px;">
       <el-button type="primary" @click="gotoLogin">登录/注册</el-button>
@@ -70,7 +70,7 @@ export default {
     };
   },
   created() {
-    // 这里临时保存在localstorge里面，理论上应该保存在store里面，再由store读写localstorage 
+    // 这里临时保存在localstorge里面，理论上应该保存在store里面，再由store读写localstorage
     this.activeMenu = getStr(SIDEBAR_ROUTE_KEY, "/");
   },
   computed: {
@@ -127,6 +127,5 @@ export default {
 }
 .introduce {
   padding-left: 5px;
-  font-size: 14px;
 }
 </style>
