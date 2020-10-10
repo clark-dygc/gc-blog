@@ -77,7 +77,7 @@ export default {
           name: "Events-App",
           github: "https://github.com/clark-dygc/events-app",
           demo: "https://gc.dygc.site:8081/",
-          desc: "这是一个供学习clone的项目",
+          desc: "这是一个供学习scss而clone的项目",
           img: require("@/assets/events-app.png"),
         },
       ],

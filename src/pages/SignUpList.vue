@@ -5,9 +5,11 @@
 </template>
 <script>
 import SignUp from "@/components/ui/SignUp";
+// import LoginBox from "@/components/ui/LoginBox";
 export default {
   components: {
     SignUp,
+    // LoginBox,
   },
   data() {
     return {};
@@ -22,7 +24,6 @@ export default {
 
 <style scoped>
 .signup-container {
-  width: 100%;
   display: flex;
   justify-content: left;
   padding: 30px;
