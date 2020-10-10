@@ -1,6 +1,10 @@
 <template>
   <div class="container">
-    <div class="bg-img" :style="{'background-image': 'url(' + bgImgUrl + ')'}"></div>
+    <div class="bg-img" :style="{'background-image': 'url(' + bgImgUrl + ')'}">
+      <div class="bg-title-container">
+        <h1 class="bg-title">个人博客</h1>
+      </div>
+    </div>
     <div class="main">
       <div class="main-header">
         <img :src="headImgUrl" style="width:100px;height:100px;border-radius:50px;" />
@@ -188,5 +192,14 @@ export default {
   padding: 40px 20px;
   box-sizing: border-box;
   margin-right: 20px;
+}
+.bg-title-container {
+  text-align: left;
+  padding: 20px 50px;
+}
+.bg-title {
+  font-size: 3em;
+  color: #efefef;
+  text-shadow: 1px 1px 3px blue;
 }
 </style>
