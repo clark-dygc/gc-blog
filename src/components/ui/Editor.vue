@@ -21,10 +21,14 @@
 import { uploadImage } from "@/api/file";
 export default {
   name: "Editor",
+  props: {
+    value: {
+      type: String,
+      default: "",
+    },
+  },
   data() {
-    return {
-      value: "",
-    };
+    return {};
   },
   methods: {
     $imgAdd(pos, $file) {
