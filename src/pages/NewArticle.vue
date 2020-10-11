@@ -15,7 +15,13 @@
       <div class="main-title">
         <el-row>
           <el-col :span="19">
-            <el-input tabindex="1" v-model="article.title" placeholder="输入标题" type="text" clearable />
+            <el-input
+              tabindex="1"
+              v-model="article.title"
+              placeholder="输入标题"
+              type="text"
+              clearable
+            />
           </el-col>
           <el-col :span="5">
             <div class="main-rate">
@@ -47,16 +53,7 @@
         </el-row>
         <div class="main-editor">
           <!-- <Tinymce ref="editor" v-model="article.content" :height="400" /> -->
-          <mavon-editor
-            ref="editor"
-            class="md"
-            v-model="article.content"
-            :defaultOpen="'edit'"
-            :toolbarsFlag="true"
-            :scrollStyle="true"
-            :ishljs="true"
-            tabindex="3"
-          />
+          <editor v-model="article.content" tabindex="3" />
         </div>
       </div>
     </div>
@@ -67,6 +64,7 @@
 import Sticky from "@/components/Sticky.vue";
 import CommentDropdown from "@/components/CommentDropdown.vue";
 import { getObject, setObject } from "@/utils/dom";
+import Editor from "@/components/ui/Editor";
 
 const db_article = "db_key__new_article";
 
@@ -75,6 +73,7 @@ export default {
   components: {
     Sticky,
     CommentDropdown,
+    Editor,
   },
   data() {
     return {
@@ -108,7 +107,6 @@ export default {
   },
   methods: {
     handlePublish() {
-      console.log('handlePublish')
       if (!this.checkArticle()) {
         return;
       }
@@ -177,8 +175,8 @@ export default {
         this.$message.info("正文不能为空");
         return false;
       }
-      return true
-    },
+      return true;
+    }
   },
   watch: {
     article: {

@@ -7,7 +7,7 @@
     </div>
     <div class="main">
       <div class="main-header">
-        <img :src="headImgUrl" style="width:100px;height:100px;border-radius:50px;" />
+        <img src="@/assets/cat.jpg" style="width:100px;height:100px;border-radius:50px;" />
         <div class="main-info">
           <span class="main-info-name">魑魅魍魉</span>
           <i class="el-icon-help" />
@@ -85,13 +85,37 @@ export default {
           img: require("@/assets/events-app.png"),
         },
       ],
+      publicPath: process.env.BASE_URL,
+      videoOptions: {
+        autoplay: false,
+        controls: true,
+        fluid: true,
+        sources: [
+          {
+            src: require("@/../public/video/funny01.mp4"),
+            type: "video/mp4",
+          },
+        ]
+      },
+      info: {
+        desc: "可爱的宝宝们",
+        time: "十分钟前",
+        user: {
+          name: '天下第一',
+        },
+        meta: {
+          likes: 123,
+          comments: 10,
+          views: 235
+        }
+      },
     };
   },
   computed: {
     ...mapState(["arr", "obj"]),
   },
   created() {
-    console.log(gc_icons);
+    console.log(this.publicPath);
   },
   methods: {
     goHome() {},

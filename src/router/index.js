@@ -15,6 +15,7 @@ import ArticleDetail from '@/pages/ArticleDetail'
 import EditArticle from '@/pages/EditArticle'
 import ECharts from "@/pages/ECharts"
 import SignUpList from "@/pages/SignUpList"
+import VideoList from '@/pages/VideoList'
 
 export const mainRoutes = {
   path: '/',
@@ -61,12 +62,20 @@ export const mainRoutes = {
         icon: 'el-icon-orange'
       },
       hidden: true
-    }, {
+    },
+    {
       path: '/signup_list',
       component: SignUpList,
       meta: {
         name: '登录组件',
         icon: 'el-icon-menu'
+      }
+    }, {
+      path: '/video_list',
+      component: VideoList,
+      meta: {
+        name: '视频组件',
+        icon: 'el-icon-video-camera'
       }
     }
   ]

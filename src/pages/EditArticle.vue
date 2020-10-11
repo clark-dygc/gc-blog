@@ -44,15 +44,7 @@
         </el-row>
         <div class="main-editor">
           <!-- <Tinymce ref="editor" v-model="article.content" :height="400" /> -->
-          <mavon-editor
-            ref="editor"
-            class="md"
-            v-model="article.content"
-            :defaultOpen="'preview'"
-            :toolbarsFlag="true"
-            :scrollStyle="true"
-            :ishljs="true"
-          />
+          <editor v-model="article.content" tabindex="3" />
         </div>
       </div>
     </div>
@@ -65,6 +57,7 @@ import Sticky from "@/components/Sticky.vue";
 import CommentDropdown from "@/components/CommentDropdown.vue";
 import { getObject, setObject } from "@/utils/dom";
 import gc from "@/utils/log";
+import Editor from "@/components/ui/Editor";
 
 const db_article = "db_key__edit_article";
 
@@ -73,6 +66,7 @@ export default {
   components: {
     Sticky,
     CommentDropdown,
+    Editor,
   },
   data() {
     return {
