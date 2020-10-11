@@ -79,7 +79,11 @@ export default {
       routes: (state) => {
         const router = state.permission.routes.find((r) => r.path === "/");
         const routes = router ? router.children : [];
-        return routes.filter((r) => !r.hidden);
+        return routes
+          .filter((r) => !r.hidden)
+          .sort((a, b) => {
+            return (b.priority || 0) - (a.priority || 0);
+          });
       },
     }),
   },

@@ -27,7 +27,8 @@ export const mainRoutes = {
       meta: {
         name: '首页',
         icon: 'el-icon-s-home'
-      }
+      },
+      priority: 9999
     },
     {
       path: '/articles',
@@ -35,7 +36,8 @@ export const mainRoutes = {
       meta: {
         name: '文章列表',
         icon: 'el-icon-document-copy'
-      }
+      },
+      priority: 9998
     },
     {
       path: '/article_detail',
@@ -87,7 +89,8 @@ export const asyncRoutes = [
     meta: {
       name: '创建文章',
       icon: 'el-icon-edit-outline'
-    }
+    },
+    priority: 9997
   },
 ]
 
