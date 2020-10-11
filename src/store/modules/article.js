@@ -38,6 +38,7 @@ const mutations = {
     }
   },
   READ_POST: (state, id) => {
+    console.log('-------------READ_POST-----------------')
     const post = state.posts.find(p => p._id == id);
     if (!post) {
       gc.warn(`未找到对应文章, article_id: ${id}`)

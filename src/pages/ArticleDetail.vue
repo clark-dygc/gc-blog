@@ -144,8 +144,14 @@ export default {
   },
   created() {},
   activated() {
-    console.log(this.articleId);
-    this.$store.dispatch("article/readPost", this.articleId);
+    if (this.$route.query && this.$route.query.row) {
+      this.articleId = this.$route.query.row._id;
+    }
+
+    if (this.articleId) {
+      this.readPost();
+    }
+
     if (!this.articleLoaded) {
       this.fetchArticle();
     }
@@ -180,6 +186,9 @@ export default {
     doDislike() {
       this.$message.info("功能未实现，敬请期待");
     },
+    readPost() {
+      this.$store.dispatch("article/readPost", this.articleId);
+    },
     handlePre() {
       this.$message.warning("功能尚实现，敬请期待");
     },
@@ -209,7 +218,6 @@ export default {
           } else {
             this.articleId = data._id;
             this.article = data;
-            console.log(this.article);
 
             this.$store.dispatch("comment/setComments", data.comments);
           }
