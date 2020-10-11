@@ -11,10 +11,10 @@
     <el-divider />
     <div class="user-info">
       <div class="user-icon">
-        <img class="user-img" src="@/assets/cat.jpg" />
+        <img class="user-img" src="@/assets/cat.jpg" alt="user-icon" />
       </div>
       <div class="user-name">
-        <h4>{{info.user.name}}</h4>
+        <h3>{{info.user.name}}</h3>
       </div>
     </div>
   </div>
@@ -108,20 +108,24 @@ export default {
   font-size: 14px;
 }
 .user-info {
+  padding: 1px;
+  display: flex;
+  align-items: center;
+  margin: 0;
 }
 .user-icon {
-  padding: 3px 0;
-  margin-left: 10px;
+  margin: 5px 10px 0;
 }
 .user-img {
   border-radius: 20px;
   width: 40px;
-  height: 40px;
+  height: auto;
+  display: block;
 }
 .user-name {
-  line-height: 40px;
+  margin-left: 2px;
+}
+.user-name > h3 {
   margin: 0;
-  display: inline-block;
-  padding: 2px 0;
 }
 </style>
