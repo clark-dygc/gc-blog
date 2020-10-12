@@ -22,13 +22,18 @@ import { uploadImage } from "@/api/file";
 export default {
   name: "Editor",
   props: {
-    value: {
+    content: {
       type: String,
       default: "",
     },
   },
+  created() {
+    this.value = this.content
+  },
   data() {
-    return {};
+    return {
+      value: "",
+    };
   },
   methods: {
     $imgAdd(pos, $file) {

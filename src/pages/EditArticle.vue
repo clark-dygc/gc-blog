@@ -44,7 +44,7 @@
         </el-row>
         <div class="main-editor">
           <!-- <Tinymce ref="editor" v-model="article.content" :height="400" /> -->
-          <editor v-model="article.content" tabindex="3" />
+          <editor v-model="article.content" :content="article.content" tabindex="3" />
         </div>
       </div>
     </div>

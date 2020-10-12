@@ -16,7 +16,7 @@ import {
   Button, Input, Table, Form, FormItem, Menu, Submenu, MenuItem, Icon,
   Aside, Main, Container, Link, Tooltip, Backtop, Divider, Card, Dialog,
   TableColumn, Dropdown, DropdownItem, DropdownMenu, PageHeader, Loading,
-  Avatar, Col, Rate, Row, Radio, RadioGroup
+  Avatar, Col, Rate, Row, Radio, RadioGroup, Message
 } from 'element-ui'
 import CollapseTransition from 'element-ui/lib/transitions/collapse-transition';
 
@@ -51,10 +51,13 @@ Vue.use(Row)
 Vue.use(Radio)
 Vue.use(RadioGroup)
 Vue.use(Rate)
+Vue.use(Message)
 Vue.component(CollapseTransition.name, CollapseTransition)
 
 // Vue.use(ElementUI)
 Vue.mixin(mixin)
+
+Vue.prototype.$message = Message;
 
 Vue.config.productionTip = false
 
