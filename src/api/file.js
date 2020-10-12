@@ -1,5 +1,3 @@
-import axios from 'axios'
-import config from '../config'
 import request from '../utils/request'
 
 export async function uploadImage(formdata) {

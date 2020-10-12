@@ -86,29 +86,7 @@ export default {
         },
       ],
       publicPath: process.env.BASE_URL,
-      videoOptions: {
-        autoplay: false,
-        controls: true,
-        fluid: true,
-        sources: [
-          {
-            src: require("@/../public/video/funny01.mp4"),
-            type: "video/mp4",
-          },
-        ]
-      },
-      info: {
-        desc: "可爱的宝宝们",
-        time: "十分钟前",
-        user: {
-          name: '天下第一',
-        },
-        meta: {
-          likes: 123,
-          comments: 10,
-          views: 235
-        }
-      },
+      
     };
   },
   computed: {
