@@ -10,7 +10,7 @@ import Home from '@/pages/Home.vue'
 // import Articles from '@/pages/Articles'
 // import NewArticle from '@/pages/NewArticle'
 // import Flowers from '@/pages/Flowers'
-// import ArticleDetail from '@/pages/ArticleDetail'
+import ArticleDetail from '@/pages/ArticleDetail'
 // import EditArticle from '@/pages/EditArticle'
 // import SignUpList from "@/pages/SignUpList"
 // import VideoList from '@/pages/VideoList'
@@ -39,7 +39,7 @@ export const mainRoutes = {
     },
     {
       path: '/article_detail',
-      component: () => import('@/pages/ArticleDetail'),
+      component: ArticleDetail, // () => import('@/pages/ArticleDetail'),
       hidden: true
     },
     {
