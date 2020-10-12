@@ -63,5 +63,16 @@ module.exports = {
       args[0].cdn = cdn;
       return args;
     });
+    // 使用image-webpack-loader对图片进行压缩构建
+    config.module
+      .rule('images')
+      .test(/\.(png|jpg|jpeg|gif|svg|svgz)$/i)
+      .use('image-webpack-loader')
+      .loader('image-webpack-loader')
+      .options({
+        // 调试模式（debug mode）下不做处理
+        bypassOnDebug: true
+      })
+      .end();
   }
 }
