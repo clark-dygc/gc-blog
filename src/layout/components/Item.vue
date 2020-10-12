@@ -16,7 +16,7 @@ export default {
     const { icon, title } = context.props;
     return [
       <i class={[icon, "sub-el-icon"]} />,
-      <span slot="title"> {title} </span>,
+      <span slot="title" class="item-title"> {title} </span>,
     ];
   },
 };

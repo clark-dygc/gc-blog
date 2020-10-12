@@ -66,19 +66,30 @@ export const mainRoutes = {
       hidden: true
     },
     {
-      path: '/signup_list',
-      component: SignUpList,
+      path: '/components',
+      component: Layout,
       meta: {
-        name: '登录组件',
-        icon: 'el-icon-menu'
-      }
-    }, {
-      path: '/video_list',
-      component: VideoList,
-      meta: {
-        name: '视频组件',
-        icon: 'el-icon-video-camera'
-      }
+        name: '组件库',
+        icon: 'el-icon-more'
+      },
+      children: [
+        {
+          path: '/signup_list',
+          component: SignUpList,
+          meta: {
+            name: '登录组件',
+            icon: 'el-icon-menu'
+          }
+        },
+        {
+          path: '/video_list',
+          component: VideoList,
+          meta: {
+            name: '视频组件',
+            icon: 'el-icon-video-camera'
+          }
+        }
+      ]
     }
   ]
 }

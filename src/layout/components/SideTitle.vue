@@ -36,11 +36,25 @@
       text-color="#000"
       active-text-color="#409EFF"
     >
-      <app-link v-for="menu in routes" :key="menu.path" :to="menu.path">
-        <el-menu-item :index="menu.path">
-          <item :icon="menu.meta.icon" :title="menu.meta.name"></item>
-        </el-menu-item>
-      </app-link>
+      <template v-for="menu in routes">
+        <app-link v-if="menu.path !== '/components'" :to="menu.path" :key="menu.path">
+          <el-menu-item>
+            <item :icon="menu.meta.icon" :title="menu.meta.name"></item>
+          </el-menu-item>
+        </app-link>
+        <el-submenu v-else :index="menu.path" :key="menu.path" popper-append-to-body>
+          <template slot="title">
+            <i :class="menu.meta.icon"></i>
+            <span style="padding-left:10px;">{{ menu.meta.name}}</span>
+          </template>
+
+          <app-link v-for="child in menu.children" :key="child.path" :to="child.path">
+            <el-menu-item>
+              <item :icon="child.meta.icon" :title="child.meta.name"></item>
+            </el-menu-item>
+          </app-link>
+        </el-submenu>
+      </template>
     </el-menu>
   </div>
 </template>
@@ -89,6 +103,7 @@ export default {
   },
   watch: {
     $route(to, from) {
+      console.log("fjkdajfkd;lajfd;ajf;" + to.path);
       setStr(SIDEBAR_ROUTE_KEY, to.path);
     },
   },
