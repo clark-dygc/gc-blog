@@ -20,6 +20,7 @@ import {
 } from 'element-ui'
 import CollapseTransition from 'element-ui/lib/transitions/collapse-transition';
 
+// todo 这里部分组件可以改成局部引入
 Vue.use(Button)
 Vue.use(Input)
 Vue.use(Table)
