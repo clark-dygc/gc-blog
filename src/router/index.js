@@ -4,22 +4,20 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 import Login from '@/pages/Login.vue'
-import Layout from '@/layout'
 import NotFound from '@/pages/NotFound.vue'
 
 import Home from '@/pages/Home.vue'
-import Articles from '@/pages/Articles'
-import NewArticle from '@/pages/NewArticle'
-import Flowers from '@/pages/Flowers'
-import ArticleDetail from '@/pages/ArticleDetail'
-import EditArticle from '@/pages/EditArticle'
-import ECharts from "@/pages/ECharts"
-import SignUpList from "@/pages/SignUpList"
-import VideoList from '@/pages/VideoList'
+// import Articles from '@/pages/Articles'
+// import NewArticle from '@/pages/NewArticle'
+// import Flowers from '@/pages/Flowers'
+// import ArticleDetail from '@/pages/ArticleDetail'
+// import EditArticle from '@/pages/EditArticle'
+// import SignUpList from "@/pages/SignUpList"
+// import VideoList from '@/pages/VideoList'
 
 export const mainRoutes = {
   path: '/',
-  component: Layout,
+  component: () => import('@/layout'),
   children: [
     {
       path: '/',
@@ -32,7 +30,7 @@ export const mainRoutes = {
     },
     {
       path: '/articles',
-      component: Articles,
+      component: () => import('@/pages/Articles'),
       meta: {
         name: '文章列表',
         icon: 'el-icon-document-copy'
@@ -41,33 +39,25 @@ export const mainRoutes = {
     },
     {
       path: '/article_detail',
-      component: ArticleDetail,
+      component: () => import('@/pages/ArticleDetail'),
       hidden: true
     },
     {
       path: '/edit_article',
-      component: EditArticle,
+      component: () => import('@/pages/EditArticle'),
       hidden: true,
     },
     {
       path: '/flowers',
-      component: Flowers,
+      component: () => import('@/pages/Flowers'),
       meta: {
         name: '鸟语花香',
         icon: 'el-icon-present'
       }
-    }, {
-      path: '/echarts',
-      component: ECharts,
-      meta: {
-        name: 'ECharts',
-        icon: 'el-icon-orange'
-      },
-      hidden: true
     },
     {
       path: '/components',
-      component: Layout,
+      component: () => import('@/layout'),
       meta: {
         name: '组件库',
         icon: 'el-icon-more'
@@ -75,7 +65,7 @@ export const mainRoutes = {
       children: [
         {
           path: '/signup_list',
-          component: SignUpList,
+          component: () => import("@/pages/SignUpList"),
           meta: {
             name: '登录组件',
             icon: 'el-icon-menu'
@@ -83,7 +73,7 @@ export const mainRoutes = {
         },
         {
           path: '/video_list',
-          component: VideoList,
+          component: () => import('@/pages/VideoList'),
           meta: {
             name: '视频组件',
             icon: 'el-icon-video-camera'
@@ -96,7 +86,7 @@ export const mainRoutes = {
 export const asyncRoutes = [
   {
     path: '/new_article',
-    component: NewArticle,
+    component: () => import('@/pages/NewArticle'),
     meta: {
       name: '创建文章',
       icon: 'el-icon-edit-outline'

@@ -25,6 +25,7 @@ service.interceptors.request.use(
       // please modify it according to the actual situation
       config.headers['X-Token'] = getToken()
     }
+    config.headers['Cache-Control'] = 'no-cache'
     return config
   },
   error => {
