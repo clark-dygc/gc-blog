@@ -44,7 +44,18 @@
         </el-row>
         <div class="main-editor">
           <!-- <Tinymce ref="editor" v-model="article.content" :height="400" /> -->
-          <editor v-model="article.content" :content="article.content" tabindex="3" />
+          <mavon-editor
+            ref="editor"
+            class="md"
+            v-model="article.content"
+            :defaultOpen="'preview'"
+            :toolbarsFlag="true"
+            :scrollStyle="true"
+            :ishljs="true"
+            tabindex="3"
+            @imgAdd="$imgAdd"
+            @imgDel="$imgDel"
+          />
         </div>
       </div>
     </div>
@@ -57,7 +68,7 @@ import Sticky from "@/components/Sticky.vue";
 import CommentDropdown from "@/components/CommentDropdown.vue";
 import { getObject, setObject } from "@/utils/dom";
 import gc from "@/utils/log";
-import Editor from "@/components/ui/Editor";
+import { uploadImage } from "@/api/file";
 
 const db_article = "db_key__edit_article";
 
@@ -66,7 +77,6 @@ export default {
   components: {
     Sticky,
     CommentDropdown,
-    Editor,
   },
   data() {
     return {
@@ -74,8 +84,7 @@ export default {
       article: {
         comment_disabled: false,
         title: "如何使用vue实现一个简单的blog",
-        content:
-          "<p>本文简单的介绍如何使用新建一个vue项目</p><h4>第一步：新建项目</h4>",
+        content: "",
         importance: 3,
         author: "",
         desc: "",
@@ -83,6 +92,7 @@ export default {
       id: "",
     };
   },
+  computed: {},
   created() {
     this.fetchArticle();
   },
@@ -93,6 +103,9 @@ export default {
     this.fetchArticle();
   },
   methods: {
+    updateContent(val) {
+      this.article.content = val;
+    },
     handleUpdate() {
       if (!this.checkArticle()) {
         return;
@@ -161,6 +174,26 @@ export default {
         return false;
       }
       return true;
+    },
+    $imgAdd(pos, $file) {
+      // 第一步.将图片上传到服务器.
+      var formdata = new FormData();
+      formdata.append("image", $file);
+      uploadImage(formdata)
+        .then((resp) => {
+          const { code, message, data } = resp.data;
+          if (code !== 0) {
+            console.error(`code: ${code}, message: ${message}`);
+            return;
+          }
+          this.$refs["editor"].$img2Url(pos, data);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    },
+    $imgDel(pos, $file) {
+      console.log("do nothing...");
     },
   },
   watch: {
