@@ -27,7 +27,7 @@ module.exports = {
   outputDir: (process.env.NODE_ENV === 'production' && platform !== 'win32') ? '/var/www/blog/client' : 'dist',
   productionSourceMap: false,
   configureWebpack: config => {
-    config.externals = cdn.externals;
+    // config.externals = cdn.externals;
     if (process.env.NODE_ENV === 'production') {
       config.plugins.push(
         new CompressionPlugin({
@@ -64,7 +64,6 @@ module.exports = {
     // 配置cdn引入
     config.plugin('html').tap((args) => {
       args[0].cdn = cdn;
-      console.log('cdn: ' + cdn)
       return args;
     });
     // 使用image-webpack-loader对图片进行压缩构建
