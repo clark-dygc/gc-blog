@@ -27,7 +27,7 @@ module.exports = {
   outputDir: (process.env.NODE_ENV === 'production' && platform !== 'win32') ? '/var/www/blog/client' : 'dist',
   productionSourceMap: false,
   configureWebpack: config => {
-    // config.externals = cdn.externals;
+    config.externals = cdn.externals;
     if (process.env.NODE_ENV === 'production') {
       config.plugins.push(
         new CompressionPlugin({
