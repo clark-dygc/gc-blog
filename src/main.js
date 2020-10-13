@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
-import ElementUI from 'element-ui'
-import 'element-ui/lib/theme-chalk/index.css'
+import ELEMENT from 'element-ui'
+// import 'element-ui/lib/theme-chalk/index.css'
 import router from './router'
 import store from './store'
 import mixin from './mixin'
@@ -11,7 +11,7 @@ import 'mavon-editor/dist/css/index.css'
 Vue.use(mavonEditor)
 
 import './permission'
-Vue.use(ElementUI)
+Vue.use(ELEMENT)
 Vue.mixin(mixin)
 
 Vue.config.productionTip = false
