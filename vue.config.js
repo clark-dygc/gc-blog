@@ -9,6 +9,7 @@ const cdn = {
     vuex: 'Vuex',
     'vue-router': 'VueRouter',
     axios: 'axios',
+    'element-ui': 'ELEMENT'
   },
 
   // 通过cdn方式使用
@@ -17,6 +18,7 @@ const cdn = {
     'https://cdn.bootcss.com/vue-router/3.1.2/vue-router.min.js',
     'https://cdn.bootcss.com/vuex/3.1.2/vuex.min.js',
     'https://cdn.bootcss.com/axios/0.19.2/axios.min.js',
+    'https://cdn.bootcdn.net/ajax/libs/element-ui/0.1.1/index.js'
   ],
 }
 
