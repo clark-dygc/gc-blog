@@ -75,20 +75,20 @@ export default {
           github: "https://github.com/clark-dygc/gc-blog",
           demo: "https://gc.dygc.site/",
           desc: "这是一个简单的个人博客，目前还在完善中...",
-          img: require("@/assets/gc-blog.png"),
+          // img: require("@/assets/gc-blog.png"),
         },
         {
           name: "Events-App",
           github: "https://github.com/clark-dygc/events-app",
           demo: "https://gc.dygc.site:8081/",
           desc: "这是一个供学习scss而clone的项目",
-          img: require("@/assets/events-app.png"),
+          // img: require("@/assets/events-app.png"),
         },
         {
           name: "Cocos-SubPackage-Test",
           demo: "https://gc.dygc.site:8082/",
           desc: "这是一个供学习scss而clone的项目",
-          img: require("@/assets/events-app.png"),
+          // img: require("@/assets/events-app.png"),
         }
       ],
       publicPath: process.env.BASE_URL,
