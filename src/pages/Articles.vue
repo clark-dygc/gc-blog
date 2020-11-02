@@ -115,7 +115,7 @@ export default {
   },
   mounted() {
     this.loading = true;
-    const query = {};
+    const query = { pageSize: 50 };
     this.$store
       .dispatch("article/getArticleList", query)
       .then((resp) => {
