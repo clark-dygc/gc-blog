@@ -4,7 +4,7 @@
     <div class="title-info">
       <h3 class="item item-title">{{item.name}}：</h3>
       <el-link class="item item-github" :href="item.github" target="_blank" type="primary">GitHub地址</el-link>
-      <el-tooltip placement="top">
+      <!-- <el-tooltip placement="top">
         <div slot="content">
           <div>
             <h3 style="display:inline-block;">{{ item.name }}</h3>
@@ -13,7 +13,7 @@
           <img v-if="item.img" :src="item.img" />
         </div>
         <el-link class="item item-demo" :href="item.demo" target="_blank" type="primary">演示地址</el-link>
-      </el-tooltip>
+      </el-tooltip> -->
 
       <span class="item item-desc" v-if="item.desc">简介：{{item.desc}}</span>
     </div>

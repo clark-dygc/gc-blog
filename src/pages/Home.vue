@@ -84,6 +84,12 @@ export default {
           desc: "这是一个供学习scss而clone的项目",
           img: require("@/assets/events-app.png"),
         },
+        {
+          name: "Cocos-SubPackage-Test",
+          demo: "https://gc.dygc.site:8082/",
+          desc: "这是一个供学习scss而clone的项目",
+          img: require("@/assets/events-app.png"),
+        }
       ],
       publicPath: process.env.BASE_URL,
       
